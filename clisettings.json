@@ -9,9 +9,11 @@
   "apiNamespace": "Rest.Api",
   "domainDirectory": "C:\\Projects\\Rest\\src\\Rest.Api",
   "applicationDirectory": "C:\\Projects\\Rest\\src\\Rest.Api",
-  "appDirectories": [ "C:\\Projects\\Rest\\src\\Rest.App" ],
   "infrastructureDirectory": "C:\\Projects\\Rest\\src\\Rest.Api",
   "apiDirectory": "C:\\Projects\\Rest\\src\\Rest.Api",
+  "appDirectories": [
+    "C:\\Projects\\Rest\\src\\Rest.App"
+  ],
   "buildingBlocksCoreNamespace": "BuildingBlocks.Core",
   "buildingBlocksEventStoreNamespace": "BuildingBlocks.EventStore",
   "store": null,
@@ -26,6 +28,6 @@
   "eventSourcing": false,
   "resources": [
     "User",
-    "Transaction"
+    "Photo"
   ]
 }

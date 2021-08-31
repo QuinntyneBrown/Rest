@@ -7,7 +7,7 @@ namespace Rest.Api.Data
     public class RestDbContext: DbContext, IRestDbContext
     {
         public DbSet<User> Users { get; private set; }
-        public DbSet<Transaction> Transactions { get; private set; }
+        public DbSet<Photo> Photos { get; private set; }
         public RestDbContext(DbContextOptions options)
             :base(options) { }
 

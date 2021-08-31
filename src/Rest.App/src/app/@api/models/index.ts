@@ -1,2 +1,2 @@
-export * from './transaction';
+export * from './photo';
 export * from './user';

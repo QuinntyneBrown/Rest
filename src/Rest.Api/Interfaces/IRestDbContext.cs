@@ -8,7 +8,8 @@ namespace Rest.Api.Interfaces
     public interface IRestDbContext
     {
         DbSet<User> Users { get; }
-        DbSet<Transaction> Transactions { get; }
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken);        
+        DbSet<Photo> Photos { get; }
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        
     }
 }
