@@ -1,0 +1,31 @@
+{
+  "projects": null,
+  "path": "C:\\Projects\\Rest",
+  "solutionName": null,
+  "rootNamespace": null,
+  "domainNamespace": "Rest.Api",
+  "applicationNamespace": "Rest.Api",
+  "infrastructureNamespace": "Rest.Api",
+  "apiNamespace": "Rest.Api",
+  "domainDirectory": "C:\\Projects\\Rest\\src\\Rest.Api",
+  "applicationDirectory": "C:\\Projects\\Rest\\src\\Rest.Api",
+  "appDirectories": [ "C:\\Projects\\Rest\\src\\Rest.App" ],
+  "infrastructureDirectory": "C:\\Projects\\Rest\\src\\Rest.Api",
+  "apiDirectory": "C:\\Projects\\Rest\\src\\Rest.Api",
+  "buildingBlocksCoreNamespace": "BuildingBlocks.Core",
+  "buildingBlocksEventStoreNamespace": "BuildingBlocks.EventStore",
+  "store": null,
+  "namespace": null,
+  "domain": null,
+  "core": null,
+  "api": null,
+  "entityIdDataType": null,
+  "sourceFolder": "src",
+  "testFolder": null,
+  "dbContext": "RestDbContext",
+  "eventSourcing": false,
+  "resources": [
+    "User",
+    "Transaction"
+  ]
+}
