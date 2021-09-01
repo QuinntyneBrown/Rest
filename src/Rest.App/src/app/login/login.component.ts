@@ -1,15 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthService, NavigationService } from '@core';
+import { Subject } from 'rxjs';
+import { takeUntil, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  constructor() { }
+  private readonly _destroyed$: Subject<void> = new Subject();
 
-  ngOnInit(): void {
+  public handleLogin(credentials:any) {
+    this._authService.tryToLogin(credentials)
+    .pipe(
+      takeUntil(this._destroyed$),
+      tap(_ => this._navigationService.redirectPreLogin())
+    ).subscribe();
   }
 
+  constructor(
+    private readonly _authService: AuthService,
+    private readonly _navigationService: NavigationService
+  ) {
+
+  }
 }

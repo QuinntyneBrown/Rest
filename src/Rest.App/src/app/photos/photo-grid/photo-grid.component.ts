@@ -45,7 +45,6 @@ export class PhotoGridComponent {
       gridPhoto.height = gridPhoto.height * (this._columnWidth / gridPhoto.width);
       gridPhoto.width = this._columnWidth;
     }
-
     return gridPhoto;
   }
 }

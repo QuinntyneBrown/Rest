@@ -16,6 +16,13 @@ namespace Rest.Api.Controllers
         public UserController(IMediator mediator)
             => _mediator = mediator;
 
+        [HttpGet("current", Name = "GetCurrentUserRoute")]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(CurrentUser.Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<CurrentUser.Response>> GetCurrent()
+            => await _mediator.Send(new CurrentUser.Request());
+
         [AllowAnonymous]
         [HttpPost("token", Name = "AuthenticateRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]

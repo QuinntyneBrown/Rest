@@ -16,14 +16,10 @@ namespace Rest.Api.Models
             Name = name;
         }
 
-        public void Update(byte[] bytes, string contentType)
+        public void Update(byte[] bytes, string contentType, float height, float width)
         {
             Bytes = bytes;
             ContentType = contentType;
-        }
-
-        public void Update(float height, float width)
-        {
             Height = height;
             Width = width;
         }

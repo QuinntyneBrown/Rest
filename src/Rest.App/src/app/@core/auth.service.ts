@@ -22,6 +22,15 @@ export class AuthService {
   public logout() {
     this._localStorageService.put({ name: accessTokenKey, value: null});
     this._localStorageService.put({ name: usernameKey, value: null });
+    this._currentUserSubject.next(null);
+  }
+
+  public tryToInitializeCurrentUser(): Observable<User> {
+    return this._userService.getCurrent()
+    .pipe(
+      tap(user => this._currentUserSubject.next(user)),
+      catchError(_ => of(null))
+    );
   }
 
   public tryToLogin(options: { username: string; password: string }) {
@@ -30,7 +39,9 @@ export class AuthService {
       tap(response => {
         this._localStorageService.put({ name: accessTokenKey, value: response.accessToken });
         this._localStorageService.put({ name: usernameKey, value: options.username});
-      })
+      }),
+      switchMap(_ => this._userService.getCurrent()),
+      tap(x => this._currentUserSubject.next(x))
     );
   }
 

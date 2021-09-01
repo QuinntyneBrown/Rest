@@ -52,6 +52,7 @@ namespace Rest.Api.Features
                     throw new Exception();
 
                 _tokenBuilder
+                    .AddClaim(new System.Security.Claims.Claim(Constants.ClaimTypes.UserId, $"{user.UserId}"))
                     .AddUsername(user.Username);
 
                 return new(_tokenBuilder.Build(), user.UserId);

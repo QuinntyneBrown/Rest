@@ -45,10 +45,8 @@ namespace Rest.Api.Data
 
                     using(var image = Image.FromStream(new MemoryStream(bytes)))
                     {
-                        photo.Update(image.PhysicalDimension.Height, image.PhysicalDimension.Width);
+                        photo.Update(bytes, contentType, image.PhysicalDimension.Height, image.PhysicalDimension.Width);
                     }
-
-                    photo.Update(bytes, contentType);
 
                     context.Photos.Add(photo);
 

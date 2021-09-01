@@ -21,7 +21,7 @@ namespace Rest.Api.Controllers
             => await _mediator.Send(new UploadPhoto.Request());
 
         [AllowAnonymous]
-        [HttpGet("serve/{photoId}")]
+        [HttpGet("serve/{photoId}", Name = "ServePhotoByIdRoute")]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(FileContentResult), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -34,6 +34,21 @@ namespace Rest.Api.Controllers
 
             return new FileContentResult(response.Photo.Bytes, response.Photo.ContentType);
         }
+
+        [AllowAnonymous]
+        [HttpGet("serve/name/{name}", Name = "ServePhotoByNameRoute")]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(FileContentResult), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> ServeByName([FromRoute] ServePhotoByName.Request request)
+        {
+            var response = await _mediator.Send(request);
+
+            if (response.Photo == null)
+                return new NotFoundObjectResult(null);
+
+            return new FileContentResult(response.Photo.Bytes, response.Photo.ContentType);
+        }        
 
         [HttpGet("{photoId}", Name = "GetPhotoByIdRoute")]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]

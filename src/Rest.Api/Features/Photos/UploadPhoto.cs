@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Rest.Api.Features
 {
@@ -21,7 +22,7 @@ namespace Rest.Api.Features
 
         public class Response
         {
-            public List<System.Guid> PhotoIds { get; set; }
+            public List<Guid> PhotoIds { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Response>
@@ -36,7 +37,6 @@ namespace Rest.Api.Features
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
-
                 var httpContext = _httpContextAccessor.HttpContext;
                 var defaultFormOptions = new FormOptions();
                 var photos = new List<Photo>();
@@ -79,8 +79,10 @@ namespace Rest.Api.Features
                                     _context.Photos.Add(photo);
                                 }
 
-                                photo.Update(StreamHelper.ReadToEnd(targetStream), section.ContentType);
-
+                                using (var image = Image.FromStream(targetStream))
+                                {
+                                    photo.Update(StreamHelper.ReadToEnd(targetStream), section.ContentType, image.PhysicalDimension.Height, image.PhysicalDimension.Width);
+                                }
                             }
 
                             photos.Add(photo);
