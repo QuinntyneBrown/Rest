@@ -15,7 +15,7 @@ namespace Rest.Api.Core
             password: password,
             salt: salt,
             prf: KeyDerivationPrf.HMACSHA512,
-            iterationCount: 10000,
+            iterationCount: 100000,
             numBytesRequested: 256 / 8));
     }
 }
