@@ -5,7 +5,7 @@ namespace Rest.Api.Core
 {
     public interface IPasswordHasher
     {
-        string HashPassword(Byte[] salt, string password);
+        string HashPassword(byte[] salt, string password);
     }
 
     public class PasswordHasher : IPasswordHasher

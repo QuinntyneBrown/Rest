@@ -16,6 +16,11 @@ namespace Rest.Api.Models
             Name = name;
         }
 
+        private Photo()
+        {
+
+        }
+
         public void Update(byte[] bytes, string contentType, float height, float width)
         {
             Bytes = bytes;
